@@ -1,10 +1,9 @@
 package aut.ap;
 
-import aut.ap.view.ConsoleView;
+import aut.ap.view.gui.LoginFrame;
 
 public class Main {
     public static void main(String[] args) {
-        ConsoleView consoleView = new ConsoleView();
-        consoleView.start();
+        new LoginFrame().setVisible(true);
     }
 }
