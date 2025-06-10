@@ -1,4 +1,4 @@
-package aut.ap.view;
+package aut.ap.view.console;
 
 import aut.ap.model.Email;
 import aut.ap.model.User;
