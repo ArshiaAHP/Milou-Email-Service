@@ -18,7 +18,7 @@ public class LoginFrame extends JFrame {
         getContentPane().setBackground(new Color(240, 240, 240));
 
         JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        headerPanel.setBackground(new Color(66, 151, 232));
+        headerPanel.setBackground(new Color(0, 102, 204));
         JLabel titleLabel = new JLabel("Milou Email Service", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         titleLabel.setForeground(Color.WHITE);
@@ -28,6 +28,8 @@ public class LoginFrame extends JFrame {
         JPanel imagePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         ImageIcon milouIcon = new ImageIcon(getClass().getResource("/images/milou.jpg"));
         JLabel imageLabel = new JLabel();
+        imageLabel.setIcon(milouIcon);
+        setIconImage(milouIcon.getImage());
         imagePanel.add(imageLabel);
         add(imagePanel, BorderLayout.WEST);
 
@@ -90,5 +92,6 @@ public class LoginFrame extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 }

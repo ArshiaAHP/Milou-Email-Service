@@ -40,14 +40,9 @@ public class MainFrame extends JFrame {
         headerPanel.add(welcomeLabel, BorderLayout.CENTER);
         ImageIcon milouIcon = new ImageIcon(getClass().getResource("/images/milou.jpg"));
         JLabel imageLabel = new JLabel();
-        if (milouIcon.getImage() != null) {
-            imageLabel.setIcon(milouIcon);
-            System.out.println("Milou image loaded successfully");
-        } else {
-            imageLabel.setText("Milou");
-            imageLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-            System.out.println("Milou image not found, using placeholder");
-        }
+        imageLabel.setIcon(milouIcon);
+
+
         headerPanel.add(imageLabel, BorderLayout.WEST);
         add(headerPanel, BorderLayout.NORTH);
 
@@ -128,6 +123,7 @@ public class MainFrame extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     private void styleButton(JButton button, Color bgColor) {

@@ -29,6 +29,8 @@ public class SignUpFrame extends JFrame {
         JPanel imagePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         ImageIcon milouIcon = new ImageIcon(getClass().getResource("/images/milou.jpg"));
         JLabel imageLabel = new JLabel();
+        imageLabel.setIcon(milouIcon);
+        setIconImage(milouIcon.getImage());
         imagePanel.add(imageLabel);
         add(imagePanel, BorderLayout.WEST);
 
@@ -94,5 +96,6 @@ public class SignUpFrame extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
     }
 }
