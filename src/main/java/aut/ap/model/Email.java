@@ -16,6 +16,7 @@ public class Email {
     @Lob
     private String body;
 
+    @Column(name = "sent_date", nullable = false)
     private LocalDateTime sentDate;
 
     @Column(length = 6, unique = true)
@@ -44,6 +45,7 @@ public class Email {
     public String getCode() { return code; }
     public LocalDateTime getSentDate() { return sentDate; }
     public User getSender() { return sender; }
+    public List<EmailRecipient> getRecipients() { return recipients; }
 
     public void setSubject(String subject) { this.subject = subject; }
     public void setBody(String body) { this.body = body; }
