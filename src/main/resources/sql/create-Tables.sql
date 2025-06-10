@@ -17,7 +17,7 @@ CREATE TABLE emails (
 
 CREATE TABLE email_recipients (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    is_read BOOLEAN NOT NULL DEFAULT FALSE,
+    isRead BOOLEAN NOT NULL DEFAULT FALSE,
     email_id BIGINT NOT NULL,
     recipient_id BIGINT NOT NULL,
     FOREIGN KEY (email_id) REFERENCES emails(id),
