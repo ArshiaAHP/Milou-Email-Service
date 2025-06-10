@@ -4,15 +4,12 @@ import aut.ap.model.Email;
 import aut.ap.model.User;
 import aut.ap.service.EmailService;
 import aut.ap.service.UserService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ConsoleView {
-    private static final Logger logger = LogManager.getLogger(ConsoleView.class);
     private final UserService userService;
     private final EmailService emailService;
     private final Scanner scanner;
@@ -25,7 +22,6 @@ public class ConsoleView {
     }
 
     public void start() {
-        logger.info("Starting Milou Email Service");
         System.out.println("Welcome to Milou Email Service!");
         while (true) {
             if (currentUser == null) {
@@ -48,7 +44,6 @@ public class ConsoleView {
             case "1" -> signUp();
             case "2" -> logIn();
             case "3" -> {
-                logger.info("Application exiting");
                 System.out.println("Goodbye!");
                 System.exit(0);
             }
@@ -79,7 +74,6 @@ public class ConsoleView {
             case "6" -> replyToEmail();
             case "7" -> forwardEmail();
             case "8" -> {
-                logger.info("User {} logged out", currentUser.getEmail());
                 System.out.println("Logged out successfully.");
                 currentUser = null;
             }
@@ -98,10 +92,8 @@ public class ConsoleView {
 
         try {
             userService.signup(name, email, password);
-            logger.info("User signed up: {}", email);
             System.out.println("Sign up successful! Please log in.");
         } catch (Exception e) {
-            logger.error("Sign up failed for {}: {}", email, e.getMessage());
             System.out.println("Sign up failed: " + e.getMessage());
         }
     }
@@ -115,10 +107,8 @@ public class ConsoleView {
 
         try {
             currentUser = userService.login(email, password);
-            logger.info("User logged in: {}", currentUser.getEmail());
             System.out.println("Login successful! Welcome, " + currentUser.getName());
         } catch (Exception e) {
-            logger.error("Login failed for {}: {}", email, e.getMessage());
             System.out.println("Login failed: " + e.getMessage());
         }
     }
@@ -134,10 +124,8 @@ public class ConsoleView {
 
         try {
             String code = emailService.sendEmail(currentUser, recipients, subject, body);
-            logger.info("Email sent by {} with code {}", currentUser.getEmail(), code);
             System.out.println("Email sent successfully! Code: " + code);
         } catch (Exception e) {
-            logger.error("Failed to send email by {}: {}", currentUser.getEmail(), e.getMessage());
             System.out.println("Failed to send email: " + e.getMessage());
         }
     }
@@ -146,10 +134,8 @@ public class ConsoleView {
         System.out.println("\n=== All Emails ===");
         try {
             List<Email> emails = emailService.getAllEmails(currentUser);
-            logger.info("User {} viewed all emails ({} emails)", currentUser.getEmail(), emails.size());
             displayEmails(emails);
         } catch (Exception e) {
-            logger.error("Failed to view all emails for {}: {}", currentUser.getEmail(), e.getMessage());
             System.out.println("Failed to retrieve emails: " + e.getMessage());
         }
     }
@@ -158,10 +144,8 @@ public class ConsoleView {
         System.out.println("\n=== Sent Emails ===");
         try {
             List<Email> emails = emailService.getSentEmails(currentUser);
-            logger.info("User {} viewed sent emails ({} emails)", currentUser.getEmail(), emails.size());
             displayEmails(emails);
         } catch (Exception e) {
-            logger.error("Failed to view sent emails for {}: {}", currentUser.getEmail(), e.getMessage());
             System.out.println("Failed to retrieve sent emails: " + e.getMessage());
         }
     }
@@ -170,10 +154,8 @@ public class ConsoleView {
         System.out.println("\n=== Unread Emails ===");
         try {
             List<Email> emails = emailService.getUnreadEmails(currentUser);
-            logger.info("User {} viewed unread emails ({} emails)", currentUser.getEmail(), emails.size());
             displayEmails(emails);
         } catch (Exception e) {
-            logger.error("Failed to view unread emails for {}: {}", currentUser.getEmail(), e.getMessage());
             System.out.println("Failed to retrieve unread emails: " + e.getMessage());
         }
     }
@@ -185,10 +167,8 @@ public class ConsoleView {
 
         try {
             Email email = emailService.getEmailByCode(currentUser, code);
-            logger.info("User {} viewed email with code {}", currentUser.getEmail(), code);
             displayEmailDetails(email);
         } catch (Exception e) {
-            logger.error("Failed to view email with code {} for {}: {}", code, currentUser.getEmail(), e.getMessage());
             System.out.println("Failed to view email: " + e.getMessage());
         }
     }
@@ -202,10 +182,8 @@ public class ConsoleView {
 
         try {
             String newCode = emailService.replyToEmail(currentUser, code, body);
-            logger.info("User {} replied to email with code {}, new code {}", currentUser.getEmail(), code, newCode);
             System.out.println("Reply sent successfully! New code: " + newCode);
         } catch (Exception e) {
-            logger.error("Failed to reply to email with code {} for {}: {}", code, currentUser.getEmail(), e.getMessage());
             System.out.println("Failed to reply: " + e.getMessage());
         }
     }
@@ -219,10 +197,8 @@ public class ConsoleView {
 
         try {
             String newCode = emailService.forwardEmail(currentUser, code, recipients);
-            logger.info("User {} forwarded email with code {}, new code {}", currentUser.getEmail(), code, newCode);
             System.out.println("Email forwarded successfully! New code: " + newCode);
         } catch (Exception e) {
-            logger.error("Failed to forward email with code {} for {}: {}", code, currentUser.getEmail(), e.getMessage());
             System.out.println("Failed to forward email: " + e.getMessage());
         }
     }
