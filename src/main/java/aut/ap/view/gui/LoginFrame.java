@@ -13,11 +13,12 @@ public class LoginFrame extends JFrame {
         super("Milou Email Service - Login");
         this.userService = new UserService();
         setSize(600, 400);
+        setResizable(false);
         setLayout(new BorderLayout(10, 10));
         getContentPane().setBackground(new Color(240, 240, 240));
 
         JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        headerPanel.setBackground(new Color(0, 102, 204));
+        headerPanel.setBackground(new Color(66, 151, 232));
         JLabel titleLabel = new JLabel("Milou Email Service", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         titleLabel.setForeground(Color.WHITE);
@@ -27,12 +28,6 @@ public class LoginFrame extends JFrame {
         JPanel imagePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         ImageIcon milouIcon = new ImageIcon(getClass().getResource("/images/milou.jpg"));
         JLabel imageLabel = new JLabel();
-        if (milouIcon.getImage() != null) {
-            imageLabel.setIcon(milouIcon);
-        } else {
-            imageLabel.setText("Milou Image Placeholder");
-            imageLabel.setFont(new Font("Arial", Font.ITALIC, 14));
-        }
         imagePanel.add(imageLabel);
         add(imagePanel, BorderLayout.WEST);
 
@@ -68,11 +63,22 @@ public class LoginFrame extends JFrame {
         loginButton.addActionListener(e -> {
             String email = emailField.getText().trim();
             String password = new String(passwordField.getPassword());
+            System.out.println("Attempting login for: " + email);
             try {
                 User user = userService.login(email, password);
-                dispose();
-                new MainFrame(user).setVisible(true);
+                System.out.println("Login successful for: " + email);
+                try {
+                    MainFrame mainFrame = new MainFrame(user);
+                    mainFrame.setVisible(true);
+                    System.out.println("MainFrame opened");
+                    dispose();
+                } catch (Exception ex) {
+                    System.err.println("Failed to open MainFrame: " + ex.getMessage());
+                    ex.printStackTrace();
+                    errorLabel.setText("Error opening main page: " + ex.getMessage());
+                }
             } catch (Exception ex) {
+                System.err.println("Login failed: " + ex.getMessage());
                 errorLabel.setText("Error: " + ex.getMessage());
             }
         });
