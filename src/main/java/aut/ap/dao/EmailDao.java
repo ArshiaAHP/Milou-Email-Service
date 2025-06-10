@@ -20,7 +20,10 @@ public class EmailDao {
 
     public Email findByCode(String code) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<Email> query = session.createQuery("FROM Email WHERE code = :code", Email.class);
+            Query<Email> query = session.createQuery(
+                    "FROM Email e LEFT JOIN FETCH e.recipients WHERE e.code = :code",
+                    Email.class
+            );
             query.setParameter("code", code);
             return query.uniqueResult();
         } catch (Exception e) {
