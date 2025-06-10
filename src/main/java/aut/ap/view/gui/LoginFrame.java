@@ -4,7 +4,6 @@ import aut.ap.model.User;
 import aut.ap.service.UserService;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 
 public class LoginFrame extends JFrame {
     private final UserService userService;
@@ -80,7 +79,7 @@ public class LoginFrame extends JFrame {
 
         signupButton.addActionListener(e -> {
             dispose();
-            new SignupFrame().setVisible(true);
+            new SignUpFrame().setVisible(true);
         });
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
