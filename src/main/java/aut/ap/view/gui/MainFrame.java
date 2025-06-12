@@ -88,7 +88,6 @@ public class MainFrame extends JFrame {
         add(formPanel, BorderLayout.EAST);
 
         updateEmailTable(emailService.getAllEmails(user));
-        System.out.println("Initial email table loaded");
 
         sendButton.addActionListener(e -> showSendForm());
         allEmailsButton.addActionListener(e -> {

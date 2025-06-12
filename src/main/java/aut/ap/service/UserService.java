@@ -23,7 +23,7 @@ public class UserService {
         if (userDao.findByEmail(normalizedEmail) != null) {
             throw new Exception("Email already exists.");
         }
-        User user = new User(name.trim(), normalizedEmail, password); // In production, hash the password
+        User user = new User(name.trim(), normalizedEmail, password); // In production, hash the password for security
         userDao.saveUser(user);
         return user;
     }
@@ -40,7 +40,7 @@ public class UserService {
             normalizedEmail = normalizedEmail + "@milou.com";
         }
         User user = userDao.findByEmail(normalizedEmail);
-        if (user == null || !user.getPassword().equals(password)) { // In production, compare hashed passwords
+        if (user == null || !user.getPassword().equals(password)) { // In production, compare hashed passwords for security
             throw new Exception("Invalid email or password.");
         }
         return user;

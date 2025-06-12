@@ -83,7 +83,7 @@ public class SignUpFrame extends JFrame {
                         dispose();
                         new LoginFrame().setVisible(true);
                     }
-                }, 1000);
+                }, 1000); // for design purposes :)
             } catch (Exception ex) {
                 errorLabel.setText("Error: " + ex.getMessage());
             }

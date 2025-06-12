@@ -5,6 +5,7 @@ import aut.ap.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+//For working with User & Hibernate (saving and finding by email.)
 public class UserDao {
     public void saveUser(User user) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

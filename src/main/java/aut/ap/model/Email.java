@@ -30,7 +30,7 @@ public class Email {
     private List<EmailRecipient> recipients = new ArrayList<>();
 
 
-    public Email() {}
+    public Email() {} //for hibernate to use
     public Email(String subject, String body, LocalDateTime sentDate, String code, User sender) {
         this.subject = subject;
         this.body = body;
@@ -39,6 +39,7 @@ public class Email {
         this.sender = sender;
     }
 
+    //setters and getters
     public Long getId() { return id; }
     public String getSubject() { return subject; }
     public String getBody() { return body; }

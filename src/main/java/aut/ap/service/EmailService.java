@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//using Dao classes to give services for email and user
 public class EmailService {
     private final EmailDao emailDao = new EmailDao();
     private final EmailRecipientDao recipientDao = new EmailRecipientDao();
@@ -116,9 +117,9 @@ public class EmailService {
         Email forward = new Email(newSubject, original.getBody(), LocalDateTime.now(), newCode, user);
         emailDao.saveEmail(forward);
 
-        List<String> recipientList = Arrays.asList(recipientEmails.split(",\\s*"));
+        List<String> recipientList = Arrays.asList(recipientEmails.split(",\\s*")); // split to emails after the comma (ignoring whitespaces) then add to a list of strings.
         for (String recipientEmail : recipientList) {
-            String normalizedEmail = recipientEmail.trim().toLowerCase();
+            String normalizedEmail = recipientEmail.trim().toLowerCase(); //whitespaces. number one enemy :)
             if (normalizedEmail.isEmpty()) {
                 continue;
             }

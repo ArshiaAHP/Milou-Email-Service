@@ -7,6 +7,7 @@ import aut.ap.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+//for working with EmailRecipient & hibernate (mark read, find user or email ...)
 public class EmailRecipientDao {
     public void saveEmailRecipient(EmailRecipient recipient) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {

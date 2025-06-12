@@ -3,6 +3,7 @@ package aut.ap.util;
 import aut.ap.dao.EmailDao;
 import java.security.SecureRandom;
 
+//For emails to use when interacting with them.
 public class CodeGenerator {
     private static final String CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789";
     private static final int CODE_LENGTH = 6;

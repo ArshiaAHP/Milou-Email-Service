@@ -4,6 +4,7 @@ import aut.ap.model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+// so we don't repeat ourselves.
 public class HibernateUtil {
     private static final SessionFactory sessionFactory;
 

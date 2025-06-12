@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+
+//basic console view od the app
 public class ConsoleView {
     private final UserService userService;
     private final EmailService emailService;

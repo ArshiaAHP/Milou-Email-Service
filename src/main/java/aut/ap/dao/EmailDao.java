@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import java.util.List;
 
+//for working with Email & hibernate (save, get, find ...)
 public class EmailDao {
     public void saveEmail(Email email) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
