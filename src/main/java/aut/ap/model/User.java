@@ -24,7 +24,7 @@ public class User {
     @OneToMany(mappedBy = "recipient")
     private List<EmailRecipient> receivedEmails = new ArrayList<>();
 
-    public User() {}
+    public User() {} //for hibernate
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
