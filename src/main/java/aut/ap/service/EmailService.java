@@ -76,10 +76,10 @@ public class EmailService {
         if (email == null) {
             throw new Exception("Email not found.");
         }
-        if (!email.getSender().equals(user) && recipientDao.findByEmailAndUser(email, user) == null) {
+        EmailRecipient recipient = recipientDao.findByEmailAndUser(email, user);
+        if (!email.getSender().equals(user) && recipient == null) {
             throw new Exception("You cannot read this email.");
         }
-        EmailRecipient recipient = recipientDao.findByEmailAndUser(email, user);
         if (recipient != null && !recipient.isRead()) {
             recipientDao.markAsRead(recipient);
         }
